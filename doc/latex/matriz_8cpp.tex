@@ -1,0 +1,284 @@
+\doxysection{matriz.\+cpp File Reference}
+\hypertarget{matriz_8cpp}{}\label{matriz_8cpp}\index{matriz.cpp@{matriz.cpp}}
+
+
+Implementación de los constructores para resolver el sistema de ecuaciones lineales representado en la matriz A y el vector B.  
+
+
+{\ttfamily \+\#include $<$iostream$>$}\newline
+{\ttfamily \+\#include $<$iomanip$>$}\newline
+{\ttfamily \+\#include "{}matriz.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{matriz_8cpp_a4ae95fe8062bea30e2b151465f29250a}{ver\+Matriz}} (const vector$<$ vector$<$ double $>$ $>$ \&A)
+\begin{DoxyCompactList}\small\item\em Imprime el contenido de la matriz A. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{matriz_8cpp_a84503de50ff7edcb58ead5fa1abe57d3}{ver\+Vector}} (const vector$<$ double $>$ \&b)
+\begin{DoxyCompactList}\small\item\em Imprime el contenido del vector B, el cual corresponde a los resultados de cada ecuación del sistema lineal. \end{DoxyCompactList}\item 
+vector$<$ double $>$ \doxymbox{\hyperlink{matriz_8cpp_ae97b5a15b22084c0b02f793317ed577d}{metodo\+Gauss}} (vector$<$ vector$<$ double $>$ $>$ A, vector$<$ double $>$ b)
+\begin{DoxyCompactList}\small\item\em Resuelve la matriz A mediante el método de eliminación de Gauss, devolviendo el valor de las incógnitas del sistema. \end{DoxyCompactList}\item 
+vector$<$ double $>$ \doxymbox{\hyperlink{matriz_8cpp_a6441e3905e22785f4b132213ac12ca7f}{matriz\+Inversa}} (vector$<$ vector$<$ double $>$ $>$ A, const vector$<$ double $>$ \&b)
+\begin{DoxyCompactList}\small\item\em Obtiene la matriz inversa de A utilizando el método de eliminación de Gauss-\/\+Jordan. \end{DoxyCompactList}\item 
+vector$<$ double $>$ \doxymbox{\hyperlink{matriz_8cpp_a1a510dda2a4ead262137e0a05741277f}{producto\+Matrices}} (const vector$<$ vector$<$ double $>$ $>$ \&A, const vector$<$ double $>$ \&b)
+\begin{DoxyCompactList}\small\item\em Multiplica la matriz A por el vector B, lo cual es útil para calcular el producto de la matriz inversa de A por el vector B. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementación de los constructores para resolver el sistema de ecuaciones lineales representado en la matriz A y el vector B. 
+
+
+
+Definition in file \doxymbox{\hyperlink{matriz_8cpp_source}{matriz.\+cpp}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{matriz_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{matriz_8cpp_a6441e3905e22785f4b132213ac12ca7f}\index{matriz.cpp@{matriz.cpp}!matrizInversa@{matrizInversa}}
+\index{matrizInversa@{matrizInversa}!matriz.cpp@{matriz.cpp}}
+\doxysubsubsection{\texorpdfstring{matrizInversa()}{matrizInversa()}}
+{\footnotesize\ttfamily \label{matriz_8cpp_a6441e3905e22785f4b132213ac12ca7f} 
+vector$<$ double $>$ matriz\+Inversa (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ double $>$ $>$}]{A}{, }\item[{const vector$<$ double $>$ \&}]{b}{}\end{DoxyParamCaption})}
+
+
+
+Obtiene la matriz inversa de A utilizando el método de eliminación de Gauss-\/\+Jordan. 
+
+Se utiliza la matriz identidad para transformar la matriz A en una matriz aumentada, posteriormente, se normaliza cada fila (el pivote se vuelve 1) y elimina los coeficientes debajo del pivote (los coeficientes debajo del pivote se vuelven 0), a tal modo que la matriz A se transforme en una matriz identidad.
+
+La matriz identidad, una vez transformada, se convierte en la matriz inversa de A, la cual es necesaria para encontrar las incógnitas del sistema de ecuaciones lineales al multiplicarla por el vector B.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & Matriz de coeficientes del sistema de ecuaciones lineales. \\
+\hline
+{\em b} & Vector de resultados del sistema de ecuaciones lineales. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{matriz_8cpp_source_l00120}{120}} of file \doxymbox{\hyperlink{matriz_8cpp_source}{matriz.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00121\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ A.size();}
+\DoxyCodeLine{00123\ \ \ \ \ vector<vector<double>>\ I(n,\ vector<double>(n,\ 0));}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ i++)}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ I[i][i]\ =\ 1;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ MATRIZ\ INVERSA\ DE\ A\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ i++)\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ pivot\ =\ A[i][i];}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ n;\ j++)\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ A[i][j]\ /=\ pivot;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ I[i][j]\ /=\ pivot;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nNormalizando\ fila\ "{}}\ <<\ i+1\ <<\ \textcolor{stringliteral}{"{}:\(\backslash\)n"{}};}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{matriz_8cpp_a4ae95fe8062bea30e2b151465f29250a}{verMatriz}}(A);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ n;\ k++)\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (k\ !=\ i)\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ factor\ =\ A[k][i];}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ n;\ j++)\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A[k][j]\ -\/=\ factor\ *\ A[i][j];}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ I[k][j]\ -\/=\ factor\ *\ I[i][j];}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nEliminando\ columna\ "{}}\ <<\ i+1\ <<\ \textcolor{stringliteral}{"{}:\(\backslash\)n"{}};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{matriz_8cpp_a4ae95fe8062bea30e2b151465f29250a}{verMatriz}}(A);}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ MATRIZ\ INVERSA\ DE\ A\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00159\ \ \ \ \ \doxymbox{\hyperlink{matriz_8cpp_a4ae95fe8062bea30e2b151465f29250a}{verMatriz}}(I);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ vector<double>\ x\ =\ \doxymbox{\hyperlink{matriz_8cpp_a1a510dda2a4ead262137e0a05741277f}{productoMatrices}}(I,\ b);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ RESULTADO\ DEL\ MÉTODO\ DE\ GAUSS-\/JORDAN\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ i++)\ }
+\DoxyCodeLine{00165\ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}P"{}}\ <<\ i+1\ <<\ \textcolor{stringliteral}{"{}\ =\ "{}}\ <<\ x[i]\ <<\ endl;}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{return}\ x;\ }
+\DoxyCodeLine{00170\ \}}
+
+\end{DoxyCode}
+\Hypertarget{matriz_8cpp_ae97b5a15b22084c0b02f793317ed577d}\index{matriz.cpp@{matriz.cpp}!metodoGauss@{metodoGauss}}
+\index{metodoGauss@{metodoGauss}!matriz.cpp@{matriz.cpp}}
+\doxysubsubsection{\texorpdfstring{metodoGauss()}{metodoGauss()}}
+{\footnotesize\ttfamily \label{matriz_8cpp_ae97b5a15b22084c0b02f793317ed577d} 
+vector$<$ double $>$ metodo\+Gauss (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ double $>$ $>$}]{A}{, }\item[{vector$<$ double $>$}]{b}{}\end{DoxyParamCaption})}
+
+
+
+Resuelve la matriz A mediante el método de eliminación de Gauss, devolviendo el valor de las incógnitas del sistema. 
+
+Transforma la matriz A, primero, en una matriz aumentada de A que incluye el vector B, posteriormente, se transforma en una matriz triangular superior, normalizando cada fila (el pivote se vuelve 1) y eliminando los coeficientes debajo del pivote (los coeficientes debajo del pivote se vuelven 0).
+
+Para encontrar el valor de las incógnitas, se sustituye a partir de la última fila hacia arriba.
+
+
+\begin{DoxyParams}{Parameters}
+{\em A} & Matriz de coeficientes del sistema de ecuaciones lineales. \\
+\hline
+{\em b} & Vector de resultados del sistema de ecuaciones lineales. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{matriz_8cpp_source_l00060}{60}} of file \doxymbox{\hyperlink{matriz_8cpp_source}{matriz.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ A.size();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ MÉTODO\ DE\ GAUSS\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ i++)\ }
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ pivot\ =\ A[i][i];}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ i;\ j\ <\ n;\ j++)}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ A[i][j]\ /=\ pivot;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ b[i]\ /=\ pivot;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nPaso\ "{}}\ <<\ i+1\ <<\ \textcolor{stringliteral}{"{}\ (Normalizar\ fila\ "{}}\ <<\ i+1\ <<\ \textcolor{stringliteral}{"{}):\(\backslash\)n"{}};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{matriz_8cpp_a4ae95fe8062bea30e2b151465f29250a}{verMatriz}}(A);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{matriz_8cpp_a84503de50ff7edcb58ead5fa1abe57d3}{verVector}}(b);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ i+1;\ k\ <\ n;\ k++)\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ factor\ =\ A[k][i];}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ i;\ j\ <\ n;\ j++)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ A[k][j]\ -\/=\ factor\ *\ A[i][j];}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ b[k]\ -\/=\ factor\ *\ b[i];}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nEliminación\ en\ columna\ "{}}\ <<\ i+1\ <<\ \textcolor{stringliteral}{"{}:\(\backslash\)n"{}};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{matriz_8cpp_a4ae95fe8062bea30e2b151465f29250a}{verMatriz}}(A);}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{matriz_8cpp_a84503de50ff7edcb58ead5fa1abe57d3}{verVector}}(b);}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ vector<double>\ x(n);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ n-\/1;\ i\ >=\ 0;\ i-\/-\/)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ x[i]\ =\ b[i];}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ i+1;\ j\ <\ n;\ j++)}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ x[i]\ -\/=\ A[i][j]\ *\ x[j];}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n-\/-\/-\/\ RESULTADO\ DEL\ MÉTODO\ DE\ GAUSS\ -\/-\/-\/\(\backslash\)n"{}};}
+\DoxyCodeLine{00100\ \ \ \ \ \doxymbox{\hyperlink{matriz_8cpp_a84503de50ff7edcb58ead5fa1abe57d3}{verVector}}(x);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{return}\ x;}
+\DoxyCodeLine{00103\ \}}
+
+\end{DoxyCode}
+\Hypertarget{matriz_8cpp_a1a510dda2a4ead262137e0a05741277f}\index{matriz.cpp@{matriz.cpp}!productoMatrices@{productoMatrices}}
+\index{productoMatrices@{productoMatrices}!matriz.cpp@{matriz.cpp}}
+\doxysubsubsection{\texorpdfstring{productoMatrices()}{productoMatrices()}}
+{\footnotesize\ttfamily \label{matriz_8cpp_a1a510dda2a4ead262137e0a05741277f} 
+vector$<$ double $>$ producto\+Matrices (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ double $>$ $>$ \&}]{A}{, }\item[{const vector$<$ double $>$ \&}]{b}{}\end{DoxyParamCaption})}
+
+
+
+Multiplica la matriz A por el vector B, lo cual es útil para calcular el producto de la matriz inversa de A por el vector B. 
+
+Se multiplica cada fila de la matriz A por el vector B, sumando los productos para encontrar el valor de cada incógnita del sistema de ecuaciones lineales. 
+\begin{DoxyParams}{Parameters}
+{\em a} & Matriz de coeficientes del sistema de ecuaciones lineales. \\
+\hline
+{\em b} & Vector de resultados de sistemas de ecuaciones lineales. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{matriz_8cpp_source_l00182}{182}} of file \doxymbox{\hyperlink{matriz_8cpp_source}{matriz.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00183\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{int}\ n\ =\ A.size();}
+\DoxyCodeLine{00185\ \ \ \ \ vector<double>\ result(n,\ 0);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ n;\ i++)}
+\DoxyCodeLine{00188\ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ n;\ j++)}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ result[i]\ +=\ A[i][j]\ *\ b[j];}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00196\ \}\ }
+
+\end{DoxyCode}
+\Hypertarget{matriz_8cpp_a4ae95fe8062bea30e2b151465f29250a}\index{matriz.cpp@{matriz.cpp}!verMatriz@{verMatriz}}
+\index{verMatriz@{verMatriz}!matriz.cpp@{matriz.cpp}}
+\doxysubsubsection{\texorpdfstring{verMatriz()}{verMatriz()}}
+{\footnotesize\ttfamily \label{matriz_8cpp_a4ae95fe8062bea30e2b151465f29250a} 
+void ver\+Matriz (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ double $>$ $>$ \&}]{A}{}\end{DoxyParamCaption})}
+
+
+
+Imprime el contenido de la matriz A. 
+
+Se itera sobre cada fila de la matriz A, imprimiendo los coeficientes respectivos. 
+\begin{DoxyParams}{Parameters}
+{\em A} & Matriz de coeficientes del sistema de ecuaciones lineales. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{matriz_8cpp_source_l00023}{23}} of file \doxymbox{\hyperlink{matriz_8cpp_source}{matriz.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ row\ :\ A)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ val\ :\ row)}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ setw(8)\ <<\ val\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ cout\ <<\ endl;}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \}}
+
+\end{DoxyCode}
+\Hypertarget{matriz_8cpp_a84503de50ff7edcb58ead5fa1abe57d3}\index{matriz.cpp@{matriz.cpp}!verVector@{verVector}}
+\index{verVector@{verVector}!matriz.cpp@{matriz.cpp}}
+\doxysubsubsection{\texorpdfstring{verVector()}{verVector()}}
+{\footnotesize\ttfamily \label{matriz_8cpp_a84503de50ff7edcb58ead5fa1abe57d3} 
+void ver\+Vector (\begin{DoxyParamCaption}\item[{const vector$<$ double $>$ \&}]{b}{}\end{DoxyParamCaption})}
+
+
+
+Imprime el contenido del vector B, el cual corresponde a los resultados de cada ecuación del sistema lineal. 
+
+Se itera sobre cada elemento del vector B, imprimiendo los resultados respectivos. 
+\begin{DoxyParams}{Parameters}
+{\em b} & Vector de resultados del sistema de ecuaciones lineales. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{matriz_8cpp_source_l00040}{40}} of file \doxymbox{\hyperlink{matriz_8cpp_source}{matriz.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00041\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ val\ :\ b)}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ cout\ <<\ setw(8)\ <<\ val\ <<\ endl;}
+\DoxyCodeLine{00044\ \}}
+
+\end{DoxyCode}

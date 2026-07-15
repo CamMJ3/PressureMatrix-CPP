@@ -1,0 +1,49 @@
+\begin{theindex}
+
+  \item {main}
+    \subitem {main.cpp}, \hyperpage{6}
+  \item {main.cpp}, \hyperpage{5}
+    \subitem {main}, \hyperpage{6}
+    \subitem {menu}, \hyperpage{6}
+  \item {matriz.cpp}, \hyperpage{8}
+    \subitem {matrizInversa}, \hyperpage{9}
+    \subitem {metodoGauss}, \hyperpage{9}
+    \subitem {productoMatrices}, \hyperpage{10}
+    \subitem {verMatriz}, \hyperpage{11}
+    \subitem {verVector}, \hyperpage{11}
+  \item {matriz.h}, \hyperpage{14}
+    \subitem {matrizInversa}, \hyperpage{14}
+    \subitem {metodoGauss}, \hyperpage{15}
+    \subitem {productoMatrices}, \hyperpage{16}
+    \subitem {verMatriz}, \hyperpage{17}
+    \subitem {verVector}, \hyperpage{17}
+  \item {matrizInversa}
+    \subitem {matriz.cpp}, \hyperpage{9}
+    \subitem {matriz.h}, \hyperpage{14}
+  \item {menu}
+    \subitem {main.cpp}, \hyperpage{6}
+  \item {metodoGauss}
+    \subitem {matriz.cpp}, \hyperpage{9}
+    \subitem {matriz.h}, \hyperpage{15}
+
+  \indexspace
+
+  \item {productoMatrices}
+    \subitem {matriz.cpp}, \hyperpage{10}
+    \subitem {matriz.h}, \hyperpage{16}
+
+  \indexspace
+
+  \item {README.md}, \hyperpage{18}
+  \item {Resolución de una Matriz A en C++}, \hyperpage{1}
+
+  \indexspace
+
+  \item {verMatriz}
+    \subitem {matriz.cpp}, \hyperpage{11}
+    \subitem {matriz.h}, \hyperpage{17}
+  \item {verVector}
+    \subitem {matriz.cpp}, \hyperpage{11}
+    \subitem {matriz.h}, \hyperpage{17}
+
+\end{theindex}
