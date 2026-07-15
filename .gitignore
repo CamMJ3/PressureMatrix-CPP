@@ -1,0 +1,37 @@
+# --- Compiled Files (Binary) ---
+*.o
+*.obj
+*.exe
+*.out
+*.app
+a.out
+
+# --- Build Directories ---
+[Bb]uild/
+[Dd]ebug/
+[Rr]elease/
+bin/
+obj/
+
+# --- macOS System Files ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# --- IDE Specific (VS Code / CLion / Xcode) ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*.user
+*.xcuserstate
+DerivedData/
+.DS_Store
+
+# --- Python (If you use scripts for testing) ---
+__pycache__/
+*.py[cod]
+*$py.class
+.env
